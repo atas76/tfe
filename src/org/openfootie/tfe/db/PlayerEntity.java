@@ -8,9 +8,10 @@ public class PlayerEntity implements Entity {
 	private ClubEntity club;
 	private NationEntity nation;
 	private PlayerAttributesEntity playerAttributes;
+	private LinePosition linePosition;
 	
 	public PlayerEntity(int shirtNumber, String firstName, String lastName, ClubEntity club, NationEntity nation,
-			PlayerAttributesEntity playerAttributes) {
+			PlayerAttributesEntity playerAttributes, LinePosition linePosition) {
 		super();
 		this.shirtNumber = shirtNumber;
 		this.firstName = firstName;
@@ -18,6 +19,7 @@ public class PlayerEntity implements Entity {
 		this.club = club;
 		this.nation = nation;
 		this.playerAttributes = playerAttributes;
+		this.linePosition = linePosition;
 	}
 	
 	public int getShirtNumber() {
@@ -56,5 +58,11 @@ public class PlayerEntity implements Entity {
 	public void setPlayerAttributes(PlayerAttributesEntity playerAttributes) {
 		this.playerAttributes = playerAttributes;
 	}
-	
+	public LinePosition getLinePosition() {
+		return linePosition;
+	}
+
+	public void setLinePosition(LinePosition linePosition) {
+		this.linePosition = linePosition;
+	}
 }
