@@ -6,6 +6,10 @@ public class DbScript {
 	
 	private static Map<String, NationEntity> nations;
 	
+	public static Map<String, NationEntity> getNations() {
+		return DbScript.nations;
+	}
+	
 	public static void load() {
 		
 		nations.put("Germany", new NationEntity("Germany"));
