@@ -20,6 +20,10 @@ public class Player {
 	
 	private LinePosition linePosition;
 	
+	public LinePosition getLinePosition() {
+		return this.linePosition;
+	}
+	
 	private Player(int shirtNumber, String firstName, String lastName, LinePosition linePosition) {
 		this.shirtNumber = shirtNumber;
 		this.firstName = firstName;

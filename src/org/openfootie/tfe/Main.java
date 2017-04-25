@@ -16,7 +16,7 @@ public class Main {
 		Team homeTeam = new Team(homeNation);
 		Team awayTeam = new Team(awayNation);
 		
-		// Next: decide on tactics and team lineup
+		// TODO: Line up selection functionality implemented. Time to write some tests
 		
 	}
 }
