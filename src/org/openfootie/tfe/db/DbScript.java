@@ -1,10 +1,11 @@
 package org.openfootie.tfe.db;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class DbScript {
 	
-	private static Map<String, NationEntity> nations;
+	private static Map<String, NationEntity> nations = new HashMap<>();
 	
 	public static Map<String, NationEntity> getNations() {
 		return DbScript.nations;

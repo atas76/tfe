@@ -9,11 +9,15 @@ import org.openfootie.tfe.db.PlayerEntity;
 public class Team {
 	
 	private String name;
-	private Squad<Player> squad;
+	private Squad squad = new Squad();
 	
 	private Coach coach = new Coach(); // Default implementation of a generic coach
 	
 	private Tactics tactics;
+	
+	public Tactics getTactics() {
+		return this.tactics;
+	}
 	
 	/**
 	 * Loads the team details from a nation entity.
@@ -24,7 +28,8 @@ public class Team {
 	 * 
 	 * @param nation the nation entity from which the details will be loaded
 	 */
-	// TODO: Provide a generic constructor based on a team entity 
+	// TODO: Provide a generic constructor based on a team entity
+	// TODO: Refactor the tactics selection away from the constructor (when environment > match stages)
 	public Team(NationEntity nation) {
 		
 		this.name = nation.getName();
@@ -39,5 +44,10 @@ public class Team {
 	
 		// Selected players are also loaded into selected tactics (and ideally tactics selection also depends on the players) 
 		this.tactics = this.coach.selectFormation(this.squad);
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
 	}
 }

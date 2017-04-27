@@ -31,7 +31,7 @@ public class Coach {
 		
 		Collections.shuffle(players);
 		
-		return players.subList(0, num - 1);
+		return players.subList(0, num);
 	}
 	
 	/**

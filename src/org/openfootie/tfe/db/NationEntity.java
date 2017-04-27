@@ -3,7 +3,7 @@ package org.openfootie.tfe.db;
 public class NationEntity implements Entity, TeamEntity {
 	
 	private String name;
-	private SquadEntity squad;
+	private SquadEntity squad = new SquadEntity();
 
 	public NationEntity(String name) {
 		super();

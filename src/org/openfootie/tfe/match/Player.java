@@ -44,6 +44,11 @@ public class Player {
 		return this;
 	}
 	
+	@Override
+	public String toString() {
+		return this.shirtNumber + " " + this.firstName + " " + this.lastName;
+	}
+	
 	public static Player load(PlayerEntity entity) {
 		return new Player(entity.getShirtNumber(), entity.getFirstName(), entity.getLastName(), entity.getLinePosition())
 				.setAttributes(entity.getPlayerAttributes());

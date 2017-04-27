@@ -1,6 +1,8 @@
 package org.openfootie.tfe.match;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Tactics {
 	
@@ -10,6 +12,7 @@ public class Tactics {
 	
 	private String name;
 	
+	// TODO: Maybe use a map for these (?). For the time being we are using a "position line" enum only for presentational purposes
 	private Player goalkeeper;
 	private TacticsLine defenders;
 	private TacticsLine midfielders;
@@ -18,6 +21,24 @@ public class Tactics {
 	public final static Tactics [] TACTICS = {
 			new Tactics(4,4,2), new Tactics(4,3,3), new Tactics(5,3,2), new Tactics(4,5,1)
 	};
+	
+	public Lineup generateLineup() {
+		
+		TreeMap<TacticsPosition, Player> tacticsPositions = new TreeMap<>();
+		
+		tacticsPositions.put(new TacticsPosition(LinePosition.GK, null), this.goalkeeper);
+		flattenTacticsLine(LinePosition.D, this.defenders, tacticsPositions);
+		flattenTacticsLine(LinePosition.M, this.midfielders, tacticsPositions);
+		flattenTacticsLine(LinePosition.F, this.attackers, tacticsPositions);
+		
+		return new Lineup(tacticsPositions);
+	}
+
+	private void flattenTacticsLine(LinePosition linePosition, TacticsLine tacticsLine, TreeMap<TacticsPosition, Player> tacticsPositions) {
+		for (Map.Entry<Position, Player> player: tacticsLine.getPlayers().entrySet()) {
+			tacticsPositions.put(new TacticsPosition(linePosition, player.getKey()), player.getValue());
+		}
+	}
 	
 	public int getDefendersNum() {
 		return this.def;

@@ -10,13 +10,12 @@ import static org.openfootie.tfe.match.Position.RC;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class TacticsLine {
 	
 	private List<Position> positions = new ArrayList<>();
-	private Map<Position, Player> players = new TreeMap<>();
+	private TreeMap<Position, Player> players = new TreeMap<>();
 	
 	public TacticsLine(int cardinality) {
 		
@@ -53,5 +52,9 @@ public class TacticsLine {
 		for (int i = 0; i < this.positions.size(); i++) {
 			this.players.put(this.positions.get(i), players.get(i));
 		}
+	}
+	
+	public TreeMap<Position, Player> getPlayers() {
+		return this.players;
 	}
 }
