@@ -22,6 +22,15 @@ public class Tactics {
 			new Tactics(4,4,2), new Tactics(4,3,3), new Tactics(5,3,2), new Tactics(4,5,1)
 	};
 	
+	public String getName() {
+		return this.name;
+	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
+	
 	public Lineup generateLineup() {
 		
 		TreeMap<TacticsPosition, Player> tacticsPositions = new TreeMap<>();

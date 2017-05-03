@@ -1,6 +1,7 @@
 package org.openfootie.tfe.match;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Lineup {
@@ -9,6 +10,10 @@ public class Lineup {
 	
 	public Lineup(TreeMap<TacticsPosition, Player> players) {
 		this.players = players;
+	}
+	
+	public Set<TacticsPosition> getPositions() {
+		return players.keySet();
 	}
 	
 	@Override

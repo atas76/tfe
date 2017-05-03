@@ -16,7 +16,10 @@ public class Main {
 		Team homeTeam = new Team(homeNation);
 		Team awayTeam = new Team(awayNation);
 		
-		// TODO: Line up selection functionality implemented. Time to write some tests
+		// TODO: integrate in the constructor (or an initialization method) 
+		homeTeam.selectTactics();
+		awayTeam.selectTactics();
 		
+		// TODO: Line up selection functionality implemented. Time to write some tests
 	}
 }

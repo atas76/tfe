@@ -11,15 +11,30 @@ public class Coach {
 	
 	private static Random rnd = new Random();
 	
+	private String name;
+	private Tactics tactics;
+	
+	public Coach() {}
+	
+	public Coach(String name, Tactics tactics) {
+		this.name = name;
+		this.tactics = tactics;
+	}
+	
 	/**
 	 * 
 	 * Select tactics based on coach-specific criteria and not on the given team
 	 * 
-	 * Currently, just a dummy implementation selecting a random tactic from the predefined ones
+	 * Currently, either the coach's preferred tactics or just a dummy implementation selecting a random tactic from the predefined ones
 	 * 
 	 * @return a random tactic. Future sophisticated versions will take into account coach "preferences"
 	 */
 	private Tactics selectTactics() {
+		
+		if (tactics != null) {
+			return this.tactics;
+		}
+		
 		return Tactics.TACTICS[rnd.nextInt(Tactics.TACTICS.length)];
 	}
 	

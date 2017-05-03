@@ -20,6 +20,19 @@ public class Team {
 	}
 	
 	/**
+	 * 
+	 * Assign temporary coach for the match day 
+	 * 
+	 * No need to over-engineer it at this point; later the coach will be loaded from persistence. 
+	 * Now we only need a subset of a coach's attributes to be used on-the-fly.
+	 * 
+	 * @param coach
+	 */
+	public void setCoach(Coach coach) {
+		this.coach = coach;
+	}
+	
+	/**
 	 * Loads the team details from a nation entity.
 	 * 
 	 * The team details required for pre-match are the name of the team, and the squad of players
@@ -41,7 +54,9 @@ public class Team {
 		}
 		
 		this.squad.setPlayers(nationPlayers);
+	}
 	
+	public void selectTactics() {
 		// Selected players are also loaded into selected tactics (and ideally tactics selection also depends on the players) 
 		this.tactics = this.coach.selectFormation(this.squad);
 	}
