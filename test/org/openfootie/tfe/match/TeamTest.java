@@ -2,9 +2,19 @@ package org.openfootie.tfe.match;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.openfootie.tfe.match.LinePosition.*;
-import static org.openfootie.tfe.match.Position.*;
+import static org.openfootie.tfe.match.LinePosition.D;
+import static org.openfootie.tfe.match.LinePosition.F;
+import static org.openfootie.tfe.match.LinePosition.GK;
+import static org.openfootie.tfe.match.LinePosition.M;
+import static org.openfootie.tfe.match.Position.C;
+import static org.openfootie.tfe.match.Position.CL;
+import static org.openfootie.tfe.match.Position.CR;
+import static org.openfootie.tfe.match.Position.L;
+import static org.openfootie.tfe.match.Position.LC;
+import static org.openfootie.tfe.match.Position.R;
+import static org.openfootie.tfe.match.Position.RC;
 
+import java.util.List;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -31,19 +41,48 @@ public class TeamTest {
 		homeTeam = new Team(homeNation);
 		awayTeam = new Team(awayNation);
 		
+		setUpTactics();
+	}
+	
+	private static void setUpCoaches() {
+		homeTeam.setCoach(new Coach("Joachim Löw", new Tactics(4,4,2)));
+		awayTeam.setCoach(new Coach("Tite", new Tactics(4,5,1)));
+	}
+	
+	/**
+	 * Setup tactics according to coaches' preferences. Must be called after coaches are setup.
+	 */
+	private static void setUpTactics() {	
 		homeTeam.selectTactics();
 		awayTeam.selectTactics();
 	}
 	
 	@Test
+	public void testPlayersPositions() {
+		
+		setUpCoaches();
+		setUpTactics();
+		
+		Lineup homeTeamLineup = homeTeam.getTactics().generateLineup();
+		Lineup awayTeamLineup = awayTeam.getTactics().generateLineup();
+		
+		for (LinePosition linePosition: LinePosition.values()) {
+			assertPlayerPositions(linePosition, homeTeamLineup.getPlayersByTacticsLine(linePosition));
+			assertPlayerPositions(linePosition, awayTeamLineup.getPlayersByTacticsLine(linePosition));
+		}
+	}
+	
+	private static void assertPlayerPositions(LinePosition linePosition, List<Player> players) {
+		for (Player player: players) {
+			assertEquals(linePosition.toString(), player.getLinePosition().toString());
+		}
+	}
+	
+	@Test
 	public void testTacticsPositions() {
 		
-		homeTeam.setCoach(new Coach("Joachim Löw", new Tactics(4,4,2)));
-		awayTeam.setCoach(new Coach("Tite", new Tactics(4,5,1)));
-		
-		// Update the default tactics from test setup as a coach is assigned
-		homeTeam.selectTactics();
-		awayTeam.selectTactics();
+		setUpCoaches();
+		setUpTactics();
 	
 		Lineup homeTeamLineup = homeTeam.getTactics().generateLineup();
 		Lineup awayTeamLineup = awayTeam.getTactics().generateLineup();
@@ -86,11 +125,9 @@ public class TeamTest {
 	}
 	
 	@Test
-	public void testRandomDefaultInitialization() {
+	public void testRandomDefaultInitialization() { // Side-effect: prints line-ups
 		
 		// Since initialization takes part in the constructor and the test is random, we just print-out the team selections
-		
-		// TODO: test: the players are placed in the correct tactics line according to their position description
 		
 		System.out.println(homeTeam + " " + homeTeam.getTactics());
 		System.out.println();

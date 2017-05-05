@@ -10,6 +10,14 @@ public class TacticsPosition implements Comparable {
 		this.position = position;
 	}
 	
+	public LinePosition getLinePosition() {
+		return this.linePosition;
+	}
+	
+	public Position getPosition() {
+		return this.position;
+	}
+	
 	@Override
 	public int compareTo(Object obj) {
 		
