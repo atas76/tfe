@@ -35,7 +35,7 @@ public class Coach {
 			return this.tactics;
 		}
 		
-		return Tactics.TACTICS[rnd.nextInt(Tactics.TACTICS.length)];
+		return new Tactics(Tactics.TACTICS[rnd.nextInt(Tactics.TACTICS.length)]);
 	}
 	
 	public Tactics selectFormation(Squad squad) {

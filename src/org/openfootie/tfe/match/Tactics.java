@@ -18,8 +18,43 @@ public class Tactics {
 	private TacticsLine midfielders;
 	private TacticsLine attackers;
 	
-	public final static Tactics [] TACTICS = {
-			new Tactics(4,4,2), new Tactics(4,3,3), new Tactics(5,3,2), new Tactics(4,5,1)
+	public static class TacticsDescription {
+		
+		int def;
+		int mid;
+		int att;
+		
+		public int getDef() {
+			return def;
+		}
+		public void setDef(int def) {
+			this.def = def;
+		}
+		public int getMid() {
+			return mid;
+		}
+		public void setMid(int mid) {
+			this.mid = mid;
+		}
+		public int getAtt() {
+			return att;
+		}
+		public void setAtt(int att) {
+			this.att = att;
+		}
+		
+		public TacticsDescription(int def, int mid, int att) {
+			this.def = def;
+			this.mid = mid;
+			this.att = att;
+		}
+	}
+	
+	public final static TacticsDescription [] TACTICS = {
+			new TacticsDescription(4,4,2), 
+			new TacticsDescription(4,3,3), 
+			new TacticsDescription(5,3,2), 
+			new TacticsDescription(4,5,1)
 	};
 	
 	public String getName() {
@@ -81,6 +116,18 @@ public class Tactics {
 		setPlayers(attackers, this.attackers);
 	}
 	
+	public TacticsLine getDefenders() {
+		return defenders;
+	}
+
+	public TacticsLine getMidfielders() {
+		return midfielders;
+	}
+
+	public TacticsLine getAttackers() {
+		return attackers;
+	}
+	
 	public Tactics(int def, int mid, int att) {
 		
 		this.def = def;
@@ -94,5 +141,9 @@ public class Tactics {
 		this.defenders = new TacticsLine(this.def);
 		this.midfielders = new TacticsLine(this.mid);
 		this.attackers = new TacticsLine(this.att);
+	}
+	
+	public Tactics(TacticsDescription desc) {
+		this(desc.def, desc.mid, desc.att);
 	}
 }

@@ -56,6 +56,10 @@ public class Team {
 		this.squad.setPlayers(nationPlayers);
 	}
 	
+	public Player getKickOffPlayer() {		
+		return MatchUtil.getRandomPlayer(this.tactics.getMidfielders().getCentralPlayers());
+	}
+	
 	public void selectTactics() {
 		// Selected players are also loaded into selected tactics (and ideally tactics selection also depends on the players) 
 		this.tactics = this.coach.selectFormation(this.squad);

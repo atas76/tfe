@@ -10,6 +10,7 @@ import static org.openfootie.tfe.match.Position.RC;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class TacticsLine {
@@ -46,6 +47,19 @@ public class TacticsLine {
 			positions.add(R);
 			break;
 		}
+	}
+	
+	public List<Player> getCentralPlayers() {
+		
+		List<Player> centralPlayers = new ArrayList<>();
+		
+		for (Map.Entry<Position, Player> playerPosition: this.players.entrySet()) {
+			if (!playerPosition.getKey().equals(L) && !playerPosition.getKey().equals(R)) {
+				centralPlayers.add(playerPosition.getValue());
+			}
+		}
+		
+		return centralPlayers;
 	}
 	
 	public void setPlayers(List<Player> players) {
